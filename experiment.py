@@ -1,4 +1,4 @@
-# Ashish Dasu (adasu)
+# Ashish Dasu
 # CS5330 — Project 5: Recognition using Deep Networks
 # Systematic experiment exploring how three architectural dimensions affect CNN performance
 # on the Fashion MNIST dataset. Evaluates ~75 configurations using a linear search strategy:

@@ -1,4 +1,4 @@
-# Ashish Dasu (adasu)
+# Ashish Dasu
 # CS5330 — Project 5: Recognition using Deep Networks
 # Examines a trained MNIST CNN by visualizing its first-layer filters
 # and showing their effect on an example digit.

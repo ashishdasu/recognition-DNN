@@ -1,4 +1,4 @@
-# Ashish Dasu (adasu)
+# Ashish Dasu
 # CS5330 — Project 5: Recognition using Deep Networks
 # Re-uses the trained MNIST digit CNN to classify Greek letters via transfer learning.
 # Freezes the pre-trained convolutional layers and retrains only the final classification layer.

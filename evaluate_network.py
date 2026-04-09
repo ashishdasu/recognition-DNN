@@ -1,4 +1,4 @@
-# Ashish Dasu (adasu)
+# Ashish Dasu
 # CS5330 — Project 5: Recognition using Deep Networks
 # Loads a trained MNIST model and evaluates it on the test set and handwritten digit images.
 

@@ -1,4 +1,4 @@
-# Ashish Dasu (adasu)
+# Ashish Dasu
 # CS5330 — Project 5: Recognition using Deep Networks
 # Extension: replaces the learned conv1 filters with a fixed Gabor filter bank
 # and retrains only the remaining layers. Compares accuracy to the fully-learned CNN

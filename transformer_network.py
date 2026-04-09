@@ -1,4 +1,4 @@
-# Ashish Dasu (adasu)
+# Ashish Dasu
 # CS5330 — Project 5: Recognition using Deep Networks
 # Vision Transformer for MNIST digit recognition. Based on the provided NetTransformer template.
 # Splits images into overlapping patches, encodes them with transformer layers,

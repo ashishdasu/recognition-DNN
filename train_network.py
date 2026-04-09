@@ -1,4 +1,4 @@
-# Ashish Dasu (adasu)
+# Ashish Dasu
 # CS5330 — Project 5: Recognition using Deep Networks
 # Builds, trains, and saves a convolutional neural network for MNIST digit recognition.
 

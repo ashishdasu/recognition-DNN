@@ -1,4 +1,4 @@
-# Ashish Dasu (adasu)
+# Ashish Dasu
 # CS5330 — Project 5: Recognition using Deep Networks
 # Extension: real-time digit recognition from webcam feed.
 # Captures video frames, isolates a region of interest, preprocesses it
