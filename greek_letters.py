@@ -188,7 +188,6 @@ def main(argv):
         shuffle=True
     )
 
-    # train until near-perfect accuracy on the small training set
     optimizer = optim.SGD(model.fc2.parameters(), lr=0.01, momentum=0.9)
     n_epochs = 200
     train_losses = []
@@ -225,6 +224,15 @@ def main(argv):
         for i, loss in enumerate(train_losses):
             f.write(f'Epoch {i+1}: {loss:.4f}\n')
     print('Training metrics saved to results/greek_training_metrics.txt')
+
+    # save modified network structure to file for the report
+    with open('results/greek_model_structure.txt', 'w') as f:
+        f.write('Modified network (fc2 replaced for Greek letter classification):\n')
+        f.write(str(model) + '\n')
+        f.write(f'\nClasses: {class_names}\n')
+        f.write(f'Total epochs trained: {len(train_losses)}\n')
+        f.write(f'Final training loss: {train_losses[-1]:.4f}\n')
+    print('Model structure saved to results/greek_model_structure.txt')
 
     # save the trained transfer learning model
     torch.save(model.state_dict(), 'greek_model.pth')
