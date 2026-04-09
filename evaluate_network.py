@@ -164,6 +164,20 @@ def main(argv):
     data, target, output = evaluate_test_examples(model, test_loader)
     plot_test_predictions(data, target, output)
 
+    # save the printed output table to file for the report
+    with open('results/evaluate_output.txt', 'w') as f:
+        f.write('--- First 10 Test Examples ---\n')
+        f.write(f'{"Idx":>3}  {"Output Values (log-probabilities)":<65}  {"Pred":>4}  {"True":>4}\n')
+        f.write('-' * 82 + '\n')
+        for i in range(10):
+            values = output[i].detach().numpy()
+            values_str = '  '.join(f'{v:6.2f}' for v in values)
+            pred = output[i].argmax().item()
+            true = target[i].item()
+            match = '✓' if pred == true else '✗'
+            f.write(f'{i:3d}  {values_str}   {pred:4d}  {true:4d}  {match}\n')
+    print('Output table saved to results/evaluate_output.txt')
+
     # evaluate handwritten digits if the directory exists
     evaluate_handwritten(model, 'handwritten_digits')
 

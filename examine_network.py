@@ -109,6 +109,19 @@ def main(argv):
     # print model structure and conv1 weights
     print_model_and_weights(model)
 
+    # save model structure and weights to file for the report
+    with open('results/examine_output.txt', 'w') as f:
+        f.write('--- Model Structure ---\n')
+        f.write(str(model) + '\n')
+        weights = model.conv1.weight
+        f.write(f'\nconv1 weight shape: {weights.shape}\n')
+        f.write(f'  {weights.shape[0]} filters, {weights.shape[1]} input channel, '
+                f'{weights.shape[2]}x{weights.shape[3]} kernel\n')
+        for i in range(weights.shape[0]):
+            f.write(f'\nFilter {i}:\n')
+            f.write(str(weights[i, 0].detach().numpy()) + '\n')
+    print('Model structure and weights saved to results/examine_output.txt')
+
     # visualize the 10 learned filters
     plot_filters(model)
 

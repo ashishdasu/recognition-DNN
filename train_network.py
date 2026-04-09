@@ -48,7 +48,9 @@ def train_network(model, train_loader, optimizer, epoch, log_interval=100):
     total = 0
     losses = []
 
+    device = next(model.parameters()).device
     for batch_idx, (data, target) in enumerate(train_loader):
+        data, target = data.to(device), target.to(device)
         optimizer.zero_grad()
         output = model(data)
         loss = F.nll_loss(output, target)
@@ -80,8 +82,10 @@ def test_network(model, test_loader):
     total_loss = 0
     correct = 0
 
+    device = next(model.parameters()).device
     with torch.no_grad():
         for data, target in test_loader:
+            data, target = data.to(device), target.to(device)
             output = model(data)
             total_loss += F.nll_loss(output, target, reduction='sum').item()
             pred = output.argmax(dim=1)
@@ -174,8 +178,17 @@ def main(argv):
     print('Plotting first 6 test examples...')
     plot_first_six(test_dataset_raw)
 
+    # select best available device (MPS for Apple Silicon, CUDA for NVIDIA, else CPU)
+    if torch.backends.mps.is_available():
+        device = torch.device('mps')
+    elif torch.cuda.is_available():
+        device = torch.device('cuda')
+    else:
+        device = torch.device('cpu')
+    print(f'Using device: {device}')
+
     # initialize network and optimizer
-    model = MyNetwork()
+    model = MyNetwork().to(device)
     print(model)
     optimizer = optim.SGD(model.parameters(), lr=learning_rate, momentum=momentum)
 
@@ -211,6 +224,8 @@ def main(argv):
     print('\nTraining metrics saved to results/training_metrics.txt')
 
     # persist the trained weights so other scripts can load them
+    # save to CPU so any machine can load the model regardless of device
+    model.to('cpu')
     torch.save(model.state_dict(), 'mnist_model.pth')
     print('Model saved to mnist_model.pth')
 
